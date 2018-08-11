@@ -1,0 +1,1445 @@
+<!doctype html>
+<html>
+<head>
+  <title> MYA DESIGN CONSULTANTS</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="css/style.css" rel="stylesheet">
+  <link href="css/responsive.css" rel="stylesheet">
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/bootstrap-grid.min.css" rel="stylesheet">
+  <link href="css/owl.carousel.css" rel="stylesheet">
+  <link href="css/owl.theme.css" rel="stylesheet">
+  <link href="css/owl.transitions.css" rel="stylesheet">
+  <link href="css/font-awesome.css" rel="stylesheet">
+  <link href="css/animate.min.css" rel="stylesheet">
+  
+  <link href="css/jquery.fancybox.css" rel="stylesheet">
+  <link href="css/jquery.fancybox-thumbs.css" rel="stylesheet">
+  <!--<link href="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.3.0/ekko-lightbox.css" />-->
+  <link href="https://fonts.googleapis.com/css?family=Oswald:200,300,400,500,600,700" rel="stylesheet"> 
+  <link href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i" rel="stylesheet"> 
+   
+
+
+   
+   <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+    $("#submit_btn").click(function() { 
+       
+	    var proceed = true;
+        //simple validation at client's end
+        //loop through each field and we simply change border color to red for invalid fields		
+		$("#contact_form input[required=true], #contact_form textarea[required=true]").each(function(){
+			$(this).css('border-color',''); 
+			if(!$.trim($(this).val())){ //if this field is empty 
+				$(this).css('border-color','red'); //change border color to red   
+				proceed = false; //set do not proceed flag
+			}
+			//check invalid email
+			var email_reg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/; 
+			if($(this).attr("type")=="email" && !email_reg.test($.trim($(this).val()))){
+				$(this).css('border-color','red'); //change border color to red   
+				proceed = false; //set do not proceed flag				
+			}	
+		});
+       
+        if(proceed) //everything looks good! proceed...
+        {
+			//get input field values data to be sent to server
+            post_data = {
+				'user_name'		: $('input[name=name]').val(), 
+				'user_email'	: $('input[name=email]').val(), 
+				'subject'	: $('input[name=subject]').val(),
+				'phone_number'	: $('input[name=phone]').val(), 
+				'msg'			: $('textarea[name=message]').val()
+			};
+            
+            //Ajax post data to server
+            $.post('contact_me.php', post_data, function(response){  
+				if(response.type == 'error'){ //load json data from server and output message     
+					output = '<div class="error">'+response.text+'</div>';
+				}else{
+				    output = '<div class="success">'+response.text+'</div>';
+					//reset values in all input fields
+					$("#contact_form  input[required=true], #contact_form textarea[required=true]").val(''); 
+					$("#contact_form #contact_body").slideUp(); //hide form after success
+				}
+				$("#contact_form #contact_results").hide().html(output).slideDown();
+            }, 'json');
+        }
+    });
+    
+    //reset previously set border colors and hide all message on .keyup()
+    $("#contact_form  input[required=true], #contact_form textarea[required=true]").keyup(function() { 
+        $(this).css('border-color',''); 
+        $("#result").slideUp();
+    });
+});
+</script>
+</head>
+<body onload="myFunctionloader()" style="margin: 0;">
+<div id="overlayloader">
+	<div id="loadingloader"></div>
+</div>
+	
+<div class="header">
+    	
+      <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+      <div class="container">
+        <a class="navbar-brand" href="http://testweb4you.com/html/MYA/"><img src="images/logo.png" /></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav  ml-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="#">HOME<span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#project">Projects</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#about">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="http://testweb4you.com/html/MYA/mya-blog/">Blog</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#contact">Contact</a>
+            </li>
+          </ul>
+        </div>
+        </div>
+      </nav>
+       
+    </div>
+      
+  <!--- CONTANT SLIDE WITH IMG STARTS --->
+  
+  <div class="main_banner">
+      <div id="owl-demo" class="owl-carousel">
+          <div class="item">
+              <img src="images/resliders/new2/Zalatimo-Sweets.jpg">
+              <!--<div class="container in_ba_tex">
+                  <h1>Lorem Ipsum text</h1>
+                  <h2>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever 
+since the 1500s</h2>
+              </div>-->
+          </div>		
+          <div class="item">
+              <img src="images/resliders/new2/Al-Ameed.jpg">
+              <!--<div class="container in_ba_tex">
+                  <h1>Lorem Ipsum text</h1>
+                  <h2>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever 
+since the 1500s</h2>
+              </div>-->
+          </div>
+          
+          <!--<div class="item">
+              <img src="images/resliders/new2/Intercontinental-Amman.jpg">
+              <div class="container in_ba_tex">
+                  <h1>Lorem Ipsum text</h1>
+                  <h2>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever 
+since the 1500s</h2>
+              </div>
+          </div>-->
+          
+          <div class="item">
+              <img src="images/resliders/new2/Moevenpick-Dead-Sea-Resort-1.jpg">
+              <!--<div class="container in_ba_tex">
+                  <h1>Lorem Ipsum text</h1>
+                  <h2>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever 
+since the 1500s</h2>
+              </div>-->
+          </div>	
+          
+          <div class="item">
+              <img src="images/resliders/new2/Movenpick Aqaba.jpg">
+              <!--<div class="container in_ba_tex">
+                  <h1>Lorem Ipsum text</h1>
+                  <h2>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever 
+since the 1500s</h2>
+              </div>-->
+          </div>	
+          
+          <div class="item">
+              <img src="images/resliders/new2/Private-villa-in-Dabouq-1.jpg">
+              <!--<div class="container in_ba_tex">
+                  <h1>Lorem Ipsum text</h1>
+                  <h2>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever 
+since the 1500s</h2>
+              </div>-->
+          </div>		
+         
+      </div>
+ </div>
+ 
+ <div class="about" id="about">
+ 	<div class="container">
+    	<div class="row">
+    	<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+        	<div class="about_info wow fadeInLeft" data-wow-duration="2s" data-wow-delay="0.2s" data-wow-offset="0" style="visibility: visible; animation-name: fadeInLeft; animation-duration: 2s; animation-delay: 0.2s;">
+            	<h2>ABOUT US</h2>
+                <p>Mya Design Consultants is a consulting firm specialized in Interior Design and Architecture. It was founded by architect and interior designer May Bdour. </p>
+                <p>We design beautiful functional spaces that are a joy to live in. We take time to listen to you and understand your needs and translate all your wishes into designs.</p>
+                <p>Going into the smallest details without overlooking the great picture we simply love what we do and are passionate about designing and building our projects. We cover a client/ project list of well established companies and household names from around the world. Our tight knit design team concentrates on superb design solutions tailored for each individual project with great attention to detail and a high level of commitment. </p>
+            </div>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+        	<div class="about_pic wow fadeInRight" data-wow-duration="2s" data-wow-delay="0.2s" data-wow-offset="0" style="visibility: visible; animation-name: fadeInRight; animation-duration: 2s; animation-delay: 0.2s;">
+            	<img src="images/ab_pic.png" />
+            </div>
+        </div>
+        </div>
+    </div>
+ </div>
+ 
+ <div class="project" id="project">
+
+	<div class="container">
+    
+   	<h3 class="wow zoomIn" style="visibility: visible; animation-name: zoomIn;">OUR PROJECTS</h3>
+		
+	<div class="mspace">
+		<div class="portfolioFilter clearfix">
+			<a href="#" data-filter="*" class="current">All</a>
+			<a href="#" data-filter=".handh">Hotels &amp; Hospitality</a>
+			<a href="#" data-filter=".candr">Commercial &amp; Retail</a>
+			<a href="#" data-filter=".cando">Corporate &amp; Offices</a>
+			<a href="#" data-filter=".residential">Residential</a>
+			<a href="#" data-filter=".mands">Medical &amp; Spas</a>
+			<a href="#" data-filter=".landscape">Landscape</a>
+		</div>
+    </div>
+		
+    <div class="row portfolioContainer gallery-grid isotope" style="position: relative; overflow: hidden; height: 510.916px;">
+    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 candr exspace isotope-item" style="position: absolute; left: 0px; top: 0px; transform: translate3d(380px, 255px, 0px);">
+			<figure>
+				<div class="gallery-img">
+					<img src="images/commercial-projects/zcover.jpg" alt="">
+				</div>
+				<figcaption>
+					<a href="zalatimo-sweets-branches.html" title="Image Caption 1">
+						<div class="d-table">
+							<div class="d-table-cell align-middle">
+								<span class="d-block font-alt letter-spacing-2 text-extra-large text-uppercase text-white">Zalatimo Sweets</span>
+							</div>
+						</div>
+					</a>
+			
+        	</figcaption>
+			</figure>
+		</div>
+                    
+    	<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 candr exspace isotope-item" style="position: absolute; left: 0px; top: 0px; transform: translate3d(0px, 0px, 0px);">
+			<figure>
+				<div class="gallery-img">
+					<img src="images/commercial-projects/Al Ameed Coffee Branches Cover.jpg" alt="">
+				</div>
+				<figcaption>
+					<a href="al-ameed-coffee-branches.html" title="Image Caption 1">
+						<div class="d-table">
+							<div class="d-table-cell align-middle">
+								<span class="d-block font-alt letter-spacing-2 text-extra-large text-uppercase text-white">Al Ameed Coffee Branches</span>
+							</div>
+						</div>
+					</a>
+				</figcaption>
+			</figure>
+		</div>
+           <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 residential exspace isotope-item isotope-hidden" style="position: absolute; left: 0px; top: 0px; opacity: 0; transform: scale3d(0.001, 0.001, 1);">
+			<figure>
+				<div class="gallery-img">
+					<img src="images/residential/Villa DabouqCover.jpg" alt="">
+				</div>
+				<figcaption>
+					<a href="villa-dabouq.html" title="Image Caption 1">
+						<div class="d-table">
+							<div class="d-table-cell align-middle">
+								<span class="d-block font-alt letter-spacing-2 text-extra-large text-uppercase text-white">Villa Dabouq</span>
+							</div>
+						</div>
+					</a>
+			
+        	</figcaption>
+			</figure>
+		</div>
+         <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 handh exspace isotope-item isotope-hidden" style="position: absolute; left: 0px; top: 0px; opacity: 0; transform: scale3d(0.001, 0.001, 1);">
+			<figure>
+				<div class="gallery-img">
+					<img src="images/hotel-hospitallity/movpick-cover.jpg" alt="">
+				</div>
+				<figcaption>
+					<a href="movenpick-resort-dead-sea.html" title="Image Caption 1">
+						<div class="d-table">
+							<div class="d-table-cell align-middle">
+								<span class="d-block font-alt letter-spacing-2 text-extra-large text-uppercase text-white">Movenpick Resort Dead Sea</span>
+							</div>
+						</div>
+					</a>
+				</figcaption>
+			</figure>
+		</div>
+         
+        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 handh exspace isotope-item isotope-hidden" style="position: absolute; left: 0px; top: 0px; opacity: 0; transform: scale3d(0.001, 0.001, 1);">
+			<figure>
+				<div class="gallery-img">
+					<img src="images/hotel-hospitallity/o-beachcover.jpg" alt="">
+				</div>
+				<figcaption>
+					<a href="o-beach.html" title="Image Caption 1">
+						<div class="d-table">
+							<div class="d-table-cell align-middle">
+								<span class="d-block font-alt letter-spacing-2 text-extra-large text-uppercase text-white">O Beach Resort</span>
+							</div>
+						</div>
+					</a>
+				</figcaption>
+			</figure>
+		</div>
+         <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 cando exspace isotope-item isotope-hidden" style="position: absolute; left: 0px; top: 0px; opacity: 0; transform: scale3d(0.001, 0.001, 1);">
+			<figure>
+				<div class="gallery-img">
+					<img src="images/offices-corporate/ai-ahmeedcover.jpg" alt="">
+				</div>
+				<figcaption>
+					<a href="al-ameed-headquarters.html" title="Image Caption 1">
+						<div class="d-table">
+							<div class="d-table-cell align-middle">
+								<span class="d-block font-alt letter-spacing-2 text-extra-large text-uppercase text-white">Al Ameed Headquarters</span>
+							</div>
+						</div>
+					</a>
+			
+        	</figcaption>
+			</figure>
+		</div> 
+		<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 candr exspace isotope-item" style="position: absolute; left: 0px; top: 0px; transform: translate3d(380px, 0px, 0px);">
+			<figure>
+				<div class="gallery-img">
+					<img src="images/commercial-projects/diva-diamondcover.jpg" alt="">
+				</div>
+				<figcaption>
+					<a href="diva-diamond-center.html" title="Image Caption 1">
+						<div class="d-table">
+							<div class="d-table-cell align-middle">
+								<span class="d-block font-alt letter-spacing-2 text-extra-large text-uppercase text-white">Diva Diamond Center</span>
+							</div>
+						</div>
+					</a>
+				</figcaption>
+			</figure>
+		</div>
+            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 mands exspace isotope-item isotope-hidden" style="position: absolute; left: 0px; top: 0px; opacity: 0; transform: scale3d(0.001, 0.001, 1);">
+			<figure>
+				<div class="gallery-img">
+					<img src="images/medical-spas/sscover.png" alt="">
+				</div>
+				<figcaption>
+					<a href="solace -skin-care-center.html" title="Image Caption 1">
+						<div class="d-table">
+							<div class="d-table-cell align-middle">
+								<span class="d-block font-alt letter-spacing-2 text-extra-large text-uppercase text-white">Solace Skin Care Center</span>
+							</div>
+						</div>
+					</a>
+			
+        	</figcaption>
+			</figure>
+		</div> 
+                    	<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 handh exspace isotope-item isotope-hidden" style="position: absolute; left: 0px; top: 0px; opacity: 0; transform: scale3d(0.001, 0.001, 1);">
+			<figure>
+				<div class="gallery-img">
+					<img src="images/hotel-hospitallity/bcover.jpg" alt="">
+				</div>
+				<figcaption>
+					<a href="bristol-hotel-opatija.html" title="Image Caption 1">
+						<div class="d-table">
+							<div class="d-table-cell align-middle">
+								<span class="d-block font-alt letter-spacing-2 text-extra-large text-uppercase text-white">Bristol Hotel Opatija</span>
+							</div>
+						</div>
+					</a>
+				</figcaption>
+			</figure>
+		</div>
+    	   <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 mands exspace isotope-item isotope-hidden" style="position: absolute; left: 0px; top: 0px; opacity: 0; transform: scale3d(0.001, 0.001, 1);">
+			<figure>
+				<div class="gallery-img">
+					<img src="images/medical-spas/shbeilatcover.jpg" alt="">
+				</div>
+				<figcaption>
+					<a href="shbeilat-dental-center.html" title="Image Caption 1">
+						<div class="d-table">
+							<div class="d-table-cell align-middle">
+								<span class="d-block font-alt letter-spacing-2 text-extra-large text-uppercase text-white">Shbeilat Dental Center</span>
+							</div>
+						</div>
+					</a>
+			
+        	</figcaption>
+			</figure>
+		</div>  
+        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 landscape exspace isotope-item isotope-hidden" style="position: absolute; left: 0px; top: 0px; opacity: 0; transform: scale3d(0.001, 0.001, 1);">
+			<figure>
+				<div class="gallery-img">
+					<img src="images/landscape/Jordan-Valley-Farm-Cover.jpg" alt="">
+				</div>
+				<figcaption>
+					<a href="jordan-valley-farm.html" title="Image Caption 1">
+						<div class="d-table">
+							<div class="d-table-cell align-middle">
+								<span class="d-block font-alt letter-spacing-2 text-extra-large text-uppercase text-white">Jordan Valley Farm</span>
+							</div>
+						</div>
+					</a>
+			
+        	</figcaption>
+			</figure>
+		</div>
+        
+<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 handh exspace isotope-item isotope-hidden" style="position: absolute; left: 0px; top: 0px; opacity: 0; transform: scale3d(0.001, 0.001, 1);">
+			<figure>
+				<div class="gallery-img">
+					<img src="images/hotel-hospitallity/dscover.jpg" alt="">
+				</div>
+				<figcaption>
+					<a href="dead-sea-spa-hotel.html" title="Image Caption 1">
+						<div class="d-table">
+							<div class="d-table-cell align-middle">
+								<span class="d-block font-alt letter-spacing-2 text-extra-large text-uppercase text-white">Dead Sea Spa Hotel</span>
+							</div>
+						</div>
+					</a>
+				</figcaption>
+			</figure>
+		</div>
+  		
+        
+   <!-- <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 handh exspace isotope-item isotope-hidden" style="position: absolute; left: 0px; top: 0px; opacity: 0; transform: scale3d(0.001, 0.001, 1);">
+			<figure>
+				<div class="gallery-img">
+					<img src="images/hotel-hospitallity/mac-cover.jpg" alt="">
+				</div>
+				<figcaption>
+					<a href="movenpick-aqaba-resort.html" title="Image Caption 1">
+						<div class="d-table">
+							<div class="d-table-cell align-middle">
+								<span class="d-block font-alt letter-spacing-2 text-extra-large text-uppercase text-white">Movenpick  Aqaba Resort</span>
+							</div>
+						</div>
+					</a>
+				</figcaption>
+			</figure>
+		</div>--> 
+        
+               <!-- <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 handh exspace isotope-item isotope-hidden" style="position: absolute; left: 0px; top: 0px; opacity: 0; transform: scale3d(0.001, 0.001, 1);">
+			<figure>
+				<div class="gallery-img">
+					<img src="images/hotel and hospitallity-image/international-cover.jpg" alt="">
+				</div>
+				<figcaption>
+					<a href="intercontinental-hotel.html" title="Image Caption 1">
+						<div class="d-table">
+							<div class="d-table-cell align-middle">
+								<span class="d-block font-alt letter-spacing-2 text-extra-large text-uppercase text-white">Intercontinental Hotel</span>
+							</div>
+						</div>
+					</a>
+				</figcaption>
+			</figure>
+		</div> 
+          -->
+
+         
+        <!-- 
+         <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 handh exspace isotope-item isotope-hidden" style="position: absolute; left: 0px; top: 0px; opacity: 0; transform: scale3d(0.001, 0.001, 1);">
+			<figure>
+				<div class="gallery-img">
+					<img src="images/hotel-hospitallity/dercover.jpg" alt="">
+				</div>
+				<figcaption>
+					<a href="dead-sea-resort.html" title="Image Caption 1">
+						<div class="d-table">
+							<div class="d-table-cell align-middle">
+								<span class="d-block font-alt letter-spacing-2 text-extra-large text-uppercase text-white">Dead Sea Resort</span>
+							</div>
+						</div>
+					</a>
+				</figcaption>
+			</figure>
+		</div>-->
+          <!--<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 handh exspace isotope-item isotope-hidden" style="position: absolute; left: 0px; top: 0px; opacity: 0; transform: scale3d(0.001, 0.001, 1);">
+			<figure>
+				<div class="gallery-img">
+					<img src="images/hotel-hospitallity/seven-cover.jpg" alt="">
+				</div>
+				<figcaption>
+					<a href="seven-roses-city-hotel.html" title="Image Caption 1">
+						<div class="d-table">
+							<div class="d-table-cell align-middle">
+								<span class="d-block font-alt letter-spacing-2 text-extra-large text-uppercase text-white">Seven Roses City Hotel</span>
+							</div>
+						</div>
+					</a>
+				</figcaption>
+			</figure>
+		</div>-->
+         <!-- <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 handh exspace isotope-item isotope-hidden" style="position: absolute; left: 0px; top: 0px; opacity: 0; transform: scale3d(0.001, 0.001, 1);">
+			<figure>
+				<div class="gallery-img">
+					<img src="images/hotel and hospitallity-image/dscover.jpg" alt="">
+				</div>
+				<figcaption>
+					<a href="dead-sea-spa-hotel.html" title="Image Caption 1">
+						<div class="d-table">
+							<div class="d-table-cell align-middle">
+								<span class="d-block font-alt letter-spacing-2 text-extra-large text-uppercase text-white">Dead Sea Spa Hotel</span>
+							</div>
+						</div>
+					</a>
+				</figcaption>
+			</figure>
+		</div> -->
+        
+       <!--  <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 handh exspace isotope-item isotope-hidden" style="position: absolute; left: 0px; top: 0px; opacity: 0; transform: scale3d(0.001, 0.001, 1);">
+			<figure>
+				<div class="gallery-img">
+					<img src="images/hotel and hospitallity-image/international-cover.jpg" alt="">
+				</div>
+				<figcaption>
+					<a href="intercontinental-hotel.html" title="Image Caption 1">
+						<div class="d-table">
+							<div class="d-table-cell align-middle">
+								<span class="d-block font-alt letter-spacing-2 text-extra-large text-uppercase text-white">Intercontinental Hotel</span>
+							</div>
+						</div>
+					</a>
+				</figcaption>
+			</figure>
+		</div> -->
+        
+        
+        <!-- <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 handh exspace isotope-item isotope-hidden" style="position: absolute; left: 0px; top: 0px; opacity: 0; transform: scale3d(0.001, 0.001, 1);">
+			<figure>
+				<div class="gallery-img">
+					<img src="images/hotel-hospitallity/macover.png" alt="">
+				</div>
+				<figcaption>
+					<a href="mirabelle-abdoun.html" title="Image Caption 1">
+						<div class="d-table">
+							<div class="d-table-cell align-middle">
+								<span class="d-block font-alt letter-spacing-2 text-extra-large text-uppercase text-white">Mirabelle Abdoun</span>
+							</div>
+						</div>
+					</a>
+				</figcaption>
+			</figure>
+		</div> -->
+        
+        
+         <!-- <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 handh exspace isotope-item isotope-hidden" style="position: absolute; left: 0px; top: 0px; opacity: 0; transform: scale3d(0.001, 0.001, 1);">
+			<figure>
+				<div class="gallery-img">
+					<img src="images/hotel-hospitallity/mac-cover.jpg" alt="">
+				</div>
+				<figcaption>
+					<a href="movenpick-aqaba-resort.html" title="Image Caption 1">
+						<div class="d-table">
+							<div class="d-table-cell align-middle">
+								<span class="d-block font-alt letter-spacing-2 text-extra-large text-uppercase text-white">Movenpick  Aqaba Resort</span>
+							</div>
+						</div>
+					</a>
+				</figcaption>
+			</figure>
+		</div> -->
+        
+        
+        
+         <!-- <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 handh exspace isotope-item isotope-hidden" style="position: absolute; left: 0px; top: 0px; opacity: 0; transform: scale3d(0.001, 0.001, 1);">
+			<figure>
+				<div class="gallery-img">
+					<img src="images/hotel-hospitallity/mscover.png" alt="">
+				</div>
+				<figcaption>
+					<a href="mirabelle-schmeisani.html" title="Image Caption 1">
+						<div class="d-table">
+							<div class="d-table-cell align-middle">
+								<span class="d-block font-alt letter-spacing-2 text-extra-large text-uppercase text-white">Mirabelle Schmeisani</span>
+							</div>
+						</div>
+					</a>
+				</figcaption>
+			</figure>
+		</div> -->
+        
+         <!-- <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 handh exspace isotope-item isotope-hidden" style="position: absolute; left: 0px; top: 0px; opacity: 0; transform: scale3d(0.001, 0.001, 1);">
+			<figure>
+				<div class="gallery-img">
+					<img src="images/hotel-hospitallity/o-beachcover.jpg" alt="">
+				</div>
+				<figcaption>
+					<a href="o-beach.html" title="Image Caption 1">
+						<div class="d-table">
+							<div class="d-table-cell align-middle">
+								<span class="d-block font-alt letter-spacing-2 text-extra-large text-uppercase text-white">O Beach Resort</span>
+							</div>
+						</div>
+					</a>
+				</figcaption>
+			</figure>
+		</div>
+         -->
+        
+         <!-- <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 handh exspace isotope-item isotope-hidden" style="position: absolute; left: 0px; top: 0px; opacity: 0; transform: scale3d(0.001, 0.001, 1);">
+			<figure>
+				<div class="gallery-img">
+					<img src="images/hotel-hospitallity/seven-cover.jpg" alt="">
+				</div>
+				<figcaption>
+					<a href="seven-roses-city-hotel.html" title="Image Caption 1">
+						<div class="d-table">
+							<div class="d-table-cell align-middle">
+								<span class="d-block font-alt letter-spacing-2 text-extra-large text-uppercase text-white">Seven Roses City Hotel</span>
+							</div>
+						</div>
+					</a>
+				</figcaption>
+			</figure>
+		</div> -->
+        
+
+       
+    
+        
+        
+        	<!-- <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 candr exspace isotope-item" style="position: absolute; left: 0px; top: 0px; transform: translate3d(760px, 0px, 0px);">
+			<figure>
+				<div class="gallery-img">
+					<img src="images/commercial-projects/shawakat-swamicovermage-.jpg" alt="">
+				</div>
+				<figcaption>
+					<a href="shawkatshami-jewelry.html" title="Image Caption 1">
+						<div class="d-table">
+							<div class="d-table-cell align-middle">
+								<span class="d-block font-alt letter-spacing-2 text-extra-large text-uppercase text-white">Shawkat Shami Jewelry</span>
+							</div>
+						</div>
+					</a>
+				</figcaption>
+			</figure>
+		</div> -->
+       
+       	<!-- <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 candr exspace isotope-item" style="position: absolute; left: 0px; top: 0px; transform: translate3d(0px, 255px, 0px);">
+			<figure>
+				<div class="gallery-img">
+					<img src="images/commercial-projects/yippe-cover.png" alt="">
+				</div>
+				<figcaption>
+					<a href="yippee-kidsplay-area.html" title="Image Caption 1">
+						<div class="d-table">
+							<div class="d-table-cell align-middle">
+								<span class="d-block font-alt letter-spacing-2 text-extra-large text-uppercase text-white">Yippee! Kids Play Area</span>
+							</div>
+						</div>
+					</a>
+				</figcaption>
+			</figure>
+		</div> -->
+        
+        	<!-- <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 candr exspace isotope-item" style="position: absolute; left: 0px; top: 0px; transform: translate3d(380px, 255px, 0px);">
+			<figure>
+				<div class="gallery-img">
+					<img src="images/commercial-projects/zcover.jpg" alt="">
+				</div>
+				<figcaption>
+					<a href="zalatimo-sweets-branches.html" title="Image Caption 1">
+						<div class="d-table">
+							<div class="d-table-cell align-middle">
+								<span class="d-block font-alt letter-spacing-2 text-extra-large text-uppercase text-white">Zalatimo Sweets</span>
+							</div>
+						</div>
+					</a>
+			
+        	</figcaption>
+			</figure>
+		</div> -->
+        
+        
+      <!--	<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 candr exspace">
+			<figure>
+				<div class="gallery-img">
+				<img src="images/commercial-projects/not_img.jpg" alt="">
+				</div>
+				<figcaption>
+					<a href="guess-kids.html" title="Image Caption 1">
+						<div class="d-table">
+							<div class="d-table-cell align-middle">
+								<span class="d-block font-alt letter-spacing-2 text-extra-large text-uppercase text-white">Guess Kids</span>
+							</div>
+						</div>
+					</a>
+			
+        	</figcaption>
+			</figure>
+		</div>-->
+        
+        
+    	<!--	<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 mands exspace isotope-item isotope-hidden" style="position: absolute; left: 0px; top: 0px; opacity: 0; transform: scale3d(0.001, 0.001, 1);">
+			<figure>
+				<div class="gallery-img">
+					<img src="images/medical-spas/gaja-cover.jpg" alt="">
+				</div>
+				<figcaption>
+					<a href="gaia's -mandala-spa.html" title="Image Caption 1">
+						<div class="d-table">
+							<div class="d-table-cell align-middle">
+								<span class="d-block font-alt letter-spacing-2 text-extra-large text-uppercase text-white">Gaia's Mandala Spa</span>
+							</div>
+						</div>
+					</a>
+			
+        	</figcaption>
+			</figure>
+		</div>
+        -->
+   
+        
+             
+		
+          <!--  <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 cando exspace isotope-item isotope-hidden" style="position: absolute; left: 0px; top: 0px; opacity: 0; transform: scale3d(0.001, 0.001, 1);">
+			<figure>
+				<div class="gallery-img">
+					<img src="images/offices-corporate/ai-ahmeedcover.jpg" alt="">
+				</div>
+				<figcaption>
+					<a href="al-ameed-headquarters.html" title="Image Caption 1">
+						<div class="d-table">
+							<div class="d-table-cell align-middle">
+								<span class="d-block font-alt letter-spacing-2 text-extra-large text-uppercase text-white">Al Ameed Headquarters</span>
+							</div>
+						</div>
+					</a>
+			
+        	</figcaption>
+			</figure>
+		</div>-->
+        
+       <!--    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 cando exspace isotope-item isotope-hidden" style="position: absolute; left: 0px; top: 0px; opacity: 0; transform: scale3d(0.001, 0.001, 1);">
+			<figure>
+				<div class="gallery-img">
+					<img src="images/offices-corporate/businesscover.jpg" alt="">
+				</div>
+				<figcaption>
+					<a href="business-hub-migrate.html" title="Image Caption 1">
+						<div class="d-table">
+							<div class="d-table-cell align-middle">
+								<span class="d-block font-alt letter-spacing-2 text-extra-large text-uppercase text-white">Business Hub Migrate</span>
+							</div>
+						</div>
+					</a>
+			
+        	</figcaption>
+			</figure>
+		</div>-->
+        
+          <!--  <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 cando exspace isotope-item isotope-hidden" style="position: absolute; left: 0px; top: 0px; opacity: 0; transform: scale3d(0.001, 0.001, 1);">
+			<figure>
+				<div class="gallery-img">
+					<img src="images/offices-corporate/sadcover.jpg" alt="">
+				</div>
+				<figcaption>
+					<a href="saad-abujaber-and-sons-headquarters.html" title="Image Caption 1">
+						<div class="d-table">
+							<div class="d-table-cell align-middle">
+								<span class="d-block font-alt letter-spacing-2 text-extra-large text-uppercase text-white">Sa'ad Abujaber &amp; Sons Headquarters</span>
+							</div>
+						</div>
+					</a>
+			
+        	</figcaption>
+			</figure>
+		</div> -->
+        
+         <!--  <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 cando exspace isotope-item isotope-hidden" style="position: absolute; left: 0px; top: 0px; opacity: 0; transform: scale3d(0.001, 0.001, 1);">
+			<figure>
+				<div class="gallery-img">
+					<img src="images/offices-corporate/ofc-cover.jpg" alt="">
+				</div>
+				<figcaption>
+					<a href="UAIC.html" title="Image Caption 1">
+						<div class="d-table">
+							<div class="d-table-cell align-middle">
+								<span class="d-block font-alt letter-spacing-2 text-extra-large text-uppercase text-white">UAIC</span>
+							</div>
+						</div>
+					</a>
+			
+        	</figcaption>
+			</figure>
+		</div> -->
+        
+      <!--  <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 residential exspace isotope-item isotope-hidden" style="position: absolute; left: 0px; top: 0px; opacity: 0; transform: scale3d(0.001, 0.001, 1);">
+			<figure>
+				<div class="gallery-img">
+					<img src="images/residential/villa-abdouncover.jpg" alt="">
+				</div>
+				<figcaption>
+					<a href="villa-abdoun.html" title="Image Caption 1">
+						<div class="d-table">
+							<div class="d-table-cell align-middle">
+								<span class="d-block font-alt letter-spacing-2 text-extra-large text-uppercase text-white">Villa Abdoun</span>
+							</div>
+						</div>
+					</a>
+			
+        	</figcaption>
+			</figure>
+		</div>
+        -->
+             <!-- <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 residential exspace isotope-item isotope-hidden" style="position: absolute; left: 0px; top: 0px; opacity: 0; transform: scale3d(0.001, 0.001, 1);">
+			<figure>
+				<div class="gallery-img">
+					<img src="images/residential/villa F Cover.JPG" alt="">
+				</div>
+				<figcaption>
+					<a href="villa-f.html" title="Image Caption 1">
+						<div class="d-table">
+							<div class="d-table-cell align-middle">
+								<span class="d-block font-alt letter-spacing-2 text-extra-large text-uppercase text-white">Villa f</span>
+							</div>
+						</div>
+					</a>
+			
+        	</figcaption>
+			</figure>
+		</div> -->
+        
+          <!-- <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 residential exspace isotope-item isotope-hidden" style="position: absolute; left: 0px; top: 0px; opacity: 0; transform: scale3d(0.001, 0.001, 1);">
+			<figure>
+				<div class="gallery-img">
+					<img src="images/residential/Villa-Fuheis-Cover.jpg" alt="">
+				</div>
+				<figcaption>
+					<a href="villa-fuheis.html" title="Image Caption 1">
+						<div class="d-table">
+							<div class="d-table-cell align-middle">
+								<span class="d-block font-alt letter-spacing-2 text-extra-large text-uppercase text-white">Villa Fuheis</span>
+							</div>
+						</div>
+					</a>
+			
+        	</figcaption>
+			</figure>
+		</div> -->
+        
+          <!--  <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 residential exspace isotope-item isotope-hidden" style="position: absolute; left: 0px; top: 0px; opacity: 0; transform: scale3d(0.001, 0.001, 1);">
+			<figure>
+				<div class="gallery-img">
+					<img src="images/residential/Villa Mahes cover.jpg" alt="">
+				</div>
+				<figcaption>
+					<a href="villa-mahes.html" title="Image Caption 1">
+						<div class="d-table">
+							<div class="d-table-cell align-middle">
+								<span class="d-block font-alt letter-spacing-2 text-extra-large text-uppercase text-white">Villa Mahes</span>
+							</div>
+						</div>
+					</a>
+			
+        	</figcaption>
+			</figure>
+		</div> -->
+        
+         <!--  <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 landscape exspace isotope-item isotope-hidden" style="position: absolute; left: 0px; top: 0px; opacity: 0; transform: scale3d(0.001, 0.001, 1);">
+			<figure>
+				<div class="gallery-img">
+					<img src="images/landscape/AlKashefFarm-cover.jpg" alt="">
+				</div>
+				<figcaption>
+					<a href="al-kashef-farm.html" title="Image Caption 1">
+						<div class="d-table">
+							<div class="d-table-cell align-middle">
+								<span class="d-block font-alt letter-spacing-2 text-extra-large text-uppercase text-white">Al Kashef Farm</span>
+							</div>
+						</div>
+					</a>
+			
+        	</figcaption>
+			</figure>
+		</div>-->
+		
+        
+          
+		 
+		<!--<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 landscape exspace">
+			<figure>
+				<div class="gallery-img">
+					<img src="images/projects/lt.jpg" alt="">
+				</div>
+				<figcaption>
+					<a href="landscape.html" title="Image Caption 1">
+						<div class="d-table">
+							<div class="d-table-cell align-middle">
+								<span class="d-block font-alt letter-spacing-2 text-extra-large text-uppercase text-white">Landscape</span>
+							</div>
+						</div>
+					</a>
+				</figcaption>
+			</figure>
+		</div>-->      
+    </div>
+        <!--<div class="vb"><a href="images/A4 Portfolio.pdf" target="_blank">view all</a></div>-->
+    
+    </div>
+    <div class="text-center blog">
+            	<a id="submit_btn" href="http://testweb4you.com/html/MYA/portfolio.html">VIEW ALL</a>
+    </div>
+ </div>
+ <div class="slider">
+		<div class="container">
+        	<h2 class="wow zoomIn" style="visibility: visible; animation-name: zoomIn;">CUSTOMERS</h2>
+			<div class="col-sm-12 col-md-12 col-lg-12 col-xs-12">
+				
+				<div id="carousel">
+					<div>
+						<img src="images/c2.jpg" alt="Manufacturer9" class="img-responsive" />
+					</div>
+					<div>
+						<img src="images/c3.jpg" alt="Manufacturer9" class="img-responsive" />
+					</div>
+					<div>
+						<img src="images/c4.jpg" alt="Manufacturer9" class="img-responsive" />
+					</div>
+					<div>
+						<img src="images/c5.jpg" alt="Manufacturer9" class="img-responsive" />
+					</div>
+					<div>
+						<img src="images/c6.jpg" alt="Manufacturer9" class="img-responsive" />
+					</div>
+					<div>
+						<img src="images/c7.jpg" alt="Manufacturer9" class="img-responsive" />
+					</div>
+					<div>
+						<img src="images/c8.jpg" alt="Manufacturer9" class="img-responsive" />
+					</div>
+					<div>
+						<img src="images/c9.jpg" alt="Manufacturer9" class="img-responsive" />
+					</div>
+					<div>
+						<img src="images/c10.jpg" alt="Manufacturer9" class="img-responsive" />
+					</div>
+					<div>
+						<img src="images/c11.jpg" alt="Manufacturer9" class="img-responsive" />
+					</div>
+					<div>
+						<img src="images/c12.jpg" alt="Manufacturer9" class="img-responsive" />
+					</div>
+					<div>
+						<img src="images/c13.jpg" alt="Manufacturer9" class="img-responsive" />
+					</div>
+					<div>
+						<img src="images/c14.jpg" alt="Manufacturer9" class="img-responsive" />
+					</div>					
+					<div>
+						<img src="images/c15.jpg" alt="Manufacturer9" class="img-responsive" />
+					</div>
+					<div>
+						<img src="images/c16.jpg" alt="Manufacturer9" class="img-responsive" />
+					</div>
+					<div>
+						<img src="images/c17.jpg" alt="Manufacturer9" class="img-responsive" />
+					</div>
+					<div>
+						<img src="images/c18.jpg" alt="Manufacturer9" class="img-responsive" />
+					</div>
+					<div>
+						<img src="images/c19.jpg" alt="Manufacturer9" class="img-responsive" />
+					</div>
+					<div>
+						<img src="images/c20.jpg" alt="Manufacturer9" class="img-responsive" />
+					</div>
+					<div>
+						<img src="images/c21.jpg" alt="Manufacturer9" class="img-responsive" />
+					</div>
+					<div>
+						<img src="images/c22.jpg" alt="Manufacturer9" class="img-responsive" />
+					</div>
+					<div>
+						<img src="images/c23.jpg" alt="Manufacturer9" class="img-responsive" />
+					</div>
+					<div>
+						<img src="images/c24.jpg" alt="Manufacturer9" class="img-responsive" />
+					</div>
+                    <div>
+						<img src="images/c25.JPG" alt="Manufacturer9" class="img-responsive" />
+					</div>
+                    <div>
+						<img src="images/c26.jpg" alt="Manufacturer9" class="img-responsive" />
+					</div>
+				</div>
+		
+			</div>
+		</div>
+	</div>
+    
+ 
+ <div class="blog" id="test">
+ 	<div class="container">
+    	<div class="row">
+        	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            	<div class="title">
+                	<h2>our blog</h2>
+                </div>
+            </div>
+		</div>
+	</div>
+	<iframe src="http://testweb4you.com/html/MYA/mya-blog/demo/"></iframe> 
+        	<!--<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+            	<div class="item-wrap">
+                  <div class="image text-center">
+                      <img src="images/3.jpg" alt="">
+                  </div>
+                  <div class="info-wrap background-11 bdrs-10 text-center pt40 pb30 plr30">
+                      <div class="equal-height" style="height: 181.183px;">
+                          <div class="post-head">
+                              <div class="info-category uppercase fsize-12 fweight-600 color-1">Lorem Ipsum</div>
+                              <h5 class="m0">
+                                  <a href="post-right-sidebar.html" class="info-title td-none color-2">
+                                      <span class="block">Lorem Ipsum is simply</span>
+                                      <span class="block">dummy text </span>
+                                  </a>
+                              </h5>
+                          </div>
+                          <div class="info-text mt20 color-9" data-trim="95">
+                              Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has </div>
+                      </div>
+                      <div class="info-management uppercase mt30">
+                          <div class="inline-block valign-middle mlr8">
+                              <i class="fa fa-calendar color-1 fsize-14" aria-hidden="true"></i>
+                              <span class="color-9 fsize-12">12 mar, 18</span>
+                          </div>
+                          <div class="inline-block valign-middle mlr8">
+                              <i class="fa fa-user color-1 fsize-14" aria-hidden="true"></i>
+                              <span class="color-9 fsize-12">Admin</span>
+                          </div>
+                          <div class="inline-block valign-middle mlr8">
+                              <i class="fa fa-paperclip color-1 fsize-14" aria-hidden="true"></i>
+                              <span class="color-9 fsize-12">Post</span>
+                          </div>
+                      </div>
+                  </div>
+               </div>
+           </div>
+           
+           <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+            	<div class="item-wrap">
+                  <div class="image text-center">
+                      <img src="images/2.jpg" alt="">
+                  </div>
+                  <div class="info-wrap background-11 bdrs-10 text-center pt40 pb30 plr30">
+                      <div class="equal-height" style="height: 181.183px;">
+                          <div class="post-head">
+                              <div class="info-category uppercase fsize-12 fweight-600 color-1">Lorem Ipsum</div>
+                              <h5 class="m0">
+                                  <a href="post-right-sidebar.html" class="info-title td-none color-2">
+                                      <span class="block">Lorem Ipsum is simply</span>
+                                      <span class="block">dummy text </span>
+                                  </a>
+                              </h5>
+                          </div>
+                          <div class="info-text mt20 color-9" data-trim="95">
+                              Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has </div>
+                      </div>
+                      <div class="info-management uppercase mt30">
+                          <div class="inline-block valign-middle mlr8">
+                              <i class="fa fa-calendar color-1 fsize-14" aria-hidden="true"></i>
+                              <span class="color-9 fsize-12">17 jan, 18</span>
+                          </div>
+                          <div class="inline-block valign-middle mlr8">
+                              <i class="fa fa-user color-1 fsize-14" aria-hidden="true"></i>
+                              <span class="color-9 fsize-12">Admin</span>
+                          </div>
+                          <div class="inline-block valign-middle mlr8">
+                              <i class="fa fa-paperclip color-1 fsize-14" aria-hidden="true"></i>
+                              <span class="color-9 fsize-12">Post</span>
+                          </div>
+                      </div>
+                  </div>
+               </div>
+           </div>
+           
+           <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+            	<div class="item-wrap">
+                  <div class="image text-center">
+                      <img src="images/4.jpg" alt="">
+                  </div>
+                  <div class="info-wrap background-11 bdrs-10 text-center pt40 pb30 plr30">
+                      <div class="equal-height" style="height: 181.183px;">
+                          <div class="post-head">
+                              <div class="info-category uppercase fsize-12 fweight-600 color-1">Lorem Ipsum</div>
+                              <h5 class="m0">
+                                  <a href="post-right-sidebar.html" class="info-title td-none color-2">
+                                      <span class="block">Lorem Ipsum is simply</span>
+                                      <span class="block">dummy text </span>
+                                  </a>
+                              </h5>
+                          </div>
+                          <div class="info-text mt20 color-9" data-trim="95">
+                              Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has </div>
+                      </div>
+                      <div class="info-management uppercase mt30">
+                          <div class="inline-block valign-middle mlr8">
+                              <i class="fa fa-calendar color-1 fsize-14" aria-hidden="true"></i>
+                              <span class="color-9 fsize-12">12 feb, 18</span>
+                          </div>
+                          <div class="inline-block valign-middle mlr8">
+                              <i class="fa fa-user color-1 fsize-14" aria-hidden="true"></i>
+                              <span class="color-9 fsize-12">Admin</span>
+                          </div>
+                          <div class="inline-block valign-middle mlr8">
+                              <i class="fa fa-paperclip color-1 fsize-14" aria-hidden="true"></i>
+                              <span class="color-9 fsize-12">Post</span>
+                          </div>
+                      </div>
+                  </div>
+               </div>
+           </div>-->
+		   
+
+			
+			
+           	 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12  text-center">
+            	<a id="submit_btn" href="http://testweb4you.com/html/MYA/mya-blog/">VIEW MORE</a>
+            </div>
+      </div>
+   </div>
+   
+</div>
+		
+		<!----<div class="test_slider">
+			<div class="container">
+            	<h2 class="wow zoomIn" style="visibility: visible; animation-name: zoomIn;">TESTIMONIAL</h2>
+                <div class="row">
+				<div class="offset-md-1 col-md-10 offset-lg-1 col-lg-10 offset-sm-1 col-sm-10 col-xs-12">
+                    <div id="testimonial-slider" class="owl-carousel wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.1s" data-wow-offset="0" style="visibility: visible; animation-duration: 1s; animation-delay: 0.1s; animation-name: fadeInUp;">
+                    	
+                        <div class="testimonial">
+                        	<img src="images/quat.png" />
+                            <p class="description">
+                                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+                            </p>
+                            <h3 class="title">Lorem Ipsum</h3>
+                        </div>
+     
+                        <div class="testimonial">
+                        	<img src="images/quat.png" />
+                            <p class="description">
+                                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+                            </p>
+                            <h3 class="title">Lorem Ipsum</h3>
+                        </div>
+     
+                        <div class="testimonial">
+                        	<img src="images/quat.png" />
+                            <p class="description">
+                                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+                            </p>
+                            <h3 class="title">Lorem Ipsum</h3>
+                        </div>
+                        <div class="testimonial">
+                        	<img src="images/quat.png" />
+                            <p class="description">
+                                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+                            </p>
+                            <h3 class="title">Lorem Ipsum</h3>
+                        </div>
+     
+                        <div class="testimonial">
+                        	<img src="images/quat.png" />
+                            <p class="description">
+                                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+                            </p>
+                            <h3 class="title">Lorem Ipsum</h3>
+                        </div>
+                        <div class="testimonial">
+                        	<img src="images/quat.png" />
+                            <p class="description">
+                                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+                            </p>
+                            <h3 class="title">Lorem Ipsum</h3>
+                        </div>
+                    </div>
+                </div>
+                </div>
+			</div>
+		</div>---->
+	
+<div class="footer" id="contact">
+	<div class="container">
+    	<div class="row">
+        	<div class="col-lg-5 col-md-5 col-sm-5 col-xs-12">
+            	<div class="footl wow fadeInLeft" data-wow-duration="2s" data-wow-delay="0.2s" data-wow-offset="0" style="visibility: visible; animation-name: fadeInLeft; animation-duration: 2s; animation-delay: 0.2s;">
+                	<h2>CONTACT US</h2>
+                    
+
+<div id="respond" class="comment-respond contact style2">
+								<div class="form-style" id="contact_form">
+									<div id="contact_results"></div>
+									<div id="contact_body">
+<ul>
+                    	<li><input type="text" placeholder="Full Name" name="name" /></li>
+                        <li><input type="email" placeholder="Email" name="email"/></li>
+                        <li><input type="text" placeholder="Subject" name ="subject"/></li>
+                        <li><input type="text" placeholder="Phone" name="phone"/></li>
+                        <li><textarea placeholder="Message" name="message"></textarea></li>
+                        <li><button id="submit_btn" href="#">SEND MESSAGE</button></li>
+                    </ul>
+</div>
+								</div>                   
+							</div>
+
+
+
+
+                </div>
+            </div>
+        
+            <div class="col-lg-7 col-md-7 col-sm-7 col-xs-12">
+            	<div class="footr wow fadeInRight" data-wow-duration="2s" data-wow-delay="0.2s" data-wow-offset="0" style="visibility: visible; animation-name: fadeInRight; animation-duration: 2s; animation-delay: 0.2s;">
+                	<ul>
+                    	<li>
+                        	<h4>LOCATION:</h4>
+                            <p>Khurassan str.11 , Al Rabiyeh , Amman Jordan</p>
+                        </li>
+                        <li>
+                        	<h4>EMAIL:</h4>
+                            <a href="#">office@myadsgn.com</a>
+                        </li>
+                        <li>
+                        	<h4>PHONE:</h4>
+                            <a href="#">+962 (6) 551 5604</a>
+                        </li>
+                     <li>    <div class="map">
+           <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1692.2269811778601!2d35.87670232515736!3d31.975707116842198!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzHCsDU4JzMxLjgiTiAzNcKwNTInMzkuOSJF!5e0!3m2!1sen!2sin!4v1528459707341" width="600" height="250" frameborder="0" style="border:0" allowfullscreen></iframe>
+
+   
+   </div></li>
+                    </ul>
+                </div>
+                <div class="cont">
+                	<h4>CONNECT:</h4>
+                    <ul>
+                    	<li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                        <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                        <li><a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
+                        <li><a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
+                        <li><a href="#"><i class="fa fa-pinterest" aria-hidden="true"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+   
+    <div class="foot_btm">
+    	<div class="container">
+        	<p>COPYRIGHT © MYADESIGN.COM. ALL RIGHTS RESERVED</p>
+        </div>
+    </div>
+</div>
+
+
+<script>
+$(window).load(function(){
+    var $container = $('.portfolioContainer');
+    $container.isotope({
+        filter: '*',
+        animationOptions: {
+            duration: 750,
+            easing: 'linear',
+            queue: false
+        }
+    });
+ 
+    $('.portfolioFilter a').click(function(){
+        $('.portfolioFilter .current').removeClass('current');
+        $(this).addClass('current');
+ 
+        var selector = $(this).attr('data-filter');
+        $container.isotope({
+            filter: selector,
+            animationOptions: {
+                duration: 750,
+                easing: 'linear',
+                queue: false
+            }
+         });
+         return false;
+    }); 
+});
+</script>
+
+
+ <!--- CONTANT SLIDE WITH IMG STARTS --->
+<script src="js/jquery-3.3.1.min.js"></script>   
+<script src="js/bootstrap.min.js"> </script>
+ 
+<script src="js/bootstrap.bundle.min.js"></script>
+<script src="js/owl.carousel.js"></script>
+<script>
+		$(document).ready(function() {
+		  $("#owl-demo").owlCarousel({
+		  navigation : true,
+		  slideSpeed : 300,
+		  paginationSpeed : 400,
+		  singleItem : true,
+		  transitionStyle : "fade",
+		  loop:true,
+		  autoPlay: 3000, //Set AutoPlay to 3 seconds
+		  // "singleItem:true" is a shortcut for:
+		  // items : 1, 
+		  // itemsDesktop : false,
+		  // itemsDesktopSmall : false,
+		  // itemsTablet: false,
+		  // itemsMobile : false
+		  });
+		});
+	</script>
+
+<script>
+	$('#ATmanufacturers0').owlCarousel({
+	autoPlay: 3000, //Set AutoPlay to 3 seconds
+	items : 6, //10 items above 1000px browser width
+	itemsDesktop : [1000,6], //5 items between 1000px and 901px
+	itemsDesktopSmall : [900,5], // betweem 900px and 601px
+	itemsTablet: [600,3], //2 items between 600 and 0
+	itemsMobile : [480,1], // itemsMobile disabled - inherit from itemsTablet option
+	pagination: true,
+	navigation:true,
+	navigationText: [
+	"<span></span>",
+	  "<span></span>"
+	  ],
+});
+</script>
+<script>
+$(document).ready(function(){
+    $("#testimonial-slider").owlCarousel({
+        items:1,
+        itemsDesktop:[1000,1],
+        itemsDesktopSmall:[979,1],
+        itemsTablet:[768,1],
+        pagination:true,
+        navigation:true,
+        navigationText:["",""],
+        slideSpeed:1000,
+        autoPlay:true
+    });
+});
+</script>
+
+<script>
+$('.about, .project, .test, .contact, .nav-link, .navbar-brand, .new-button').click(function() {
+    var sectionTo = $(this).attr('href');
+    $('html, body').animate({
+      scrollTop: $(sectionTo).offset().top
+    }, 1500);
+});
+</script>
+<script src="js/wow.js" type="text/javascript"></script> 
+<script>
+    wow = new WOW(
+      {
+        animateClass: 'animated',
+        offset:       100,
+        callback:     function(box) {
+          console.log("WOW: animating <" + box.tagName.toLowerCase() + ">")
+        }
+      }
+    );
+    wow.init();
+  
+  </script>
+<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.3.0/ekko-lightbox.js"></script> 
+ <script>
+ $(document).on('click', '[data-toggle="lightbox"]', function(event) {
+                event.preventDefault();
+                $(this).ekkoLightbox();
+            });
+ </script>-->
+ <script type="text/javascript">
+			$(function() {
+
+				var $c = $('#carousel'),
+					$w = $(window);
+
+				$c.carouFredSel({
+					align: false,
+					items: 10,
+					scroll: {
+						items: 1,
+						duration: 2000,
+						timeoutDuration: 0,
+						easing: 'linear',
+						loop:true,
+						pauseOnHover: 'immediate'
+					}
+				});
+
+				
+				$w.bind('resize.example', function() {
+					var nw = $w.width();
+					if (nw < 990) {
+						nw = 990;
+					}
+
+					$c.width(nw * 3);
+					$c.parent().width(nw);
+
+				}).trigger('resize.example');
+
+			});
+		</script>
+<script src="js/jquery.carouFredSel.js"></script>
+<script src="js/prettify.css.js"></script>
+<script src="js/prettify.js"></script>
+<script src="js/jquery.fancybox.js"></script>
+<script src="js/jquery.fancybox-thumbs.js"></script>
+
+
+<script src="https://isotope.metafizzy.co/v1/jquery.isotope.min.js"></script>
+<script>
+$('.fancybox-thumbs').fancybox({
+      prevEffect: 'none',
+      nextEffect: 'none',
+
+      closeBtn: true,
+      arrows: true,
+      nextClick: true,
+
+      helpers: {
+        thumbs: {
+          width: 50,
+          height: 50
+        }
+      }
+    });
+</script>  
+<script>
+function myFunctionloader() 
+{
+    myVar = setTimeout(showPage, 1000);
+}
+function showPage()
+{
+    document.getElementById("overlayloader").style.display = "none";
+    document.getElementById("myDiv").style.display = "block";
+}
+</script>
+ 
+ 
+</body>
+</html>

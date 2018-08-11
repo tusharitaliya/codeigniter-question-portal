@@ -1,0 +1,161 @@
+body{
+	width:100%;
+	background-color:#fff;
+}
+.cantercalss{
+	margin:0 auto;
+	text-align:center;
+	float: none; 
+}
+.cantercalssm{
+	margin:0 auto;
+	text-align:center;
+	padding-top: 25px;
+	float: none;
+}
+h1, h2, h3, h4, h5, h6{
+	text-align:center;
+}
+.header{
+	background-color:#fff;
+	padding:15px 0px;
+	margin-bottom:25px;
+}
+label{
+	float: left;
+}
+.form-control{
+	float: right;
+	width: 100%;
+}
+.form-group{
+	float: left;
+	width: 100%;
+	position: relative;
+}
+.sort-item{
+	border:1px solid #ddd;
+}
+#formbuilder{
+	padding-top:25px;
+}
+.applybutton{
+	background-color:#fff;
+	padding: 5px 15px;
+	border: 1px solid #000;
+	border-radius: 5px;
+	position: relative;
+	top: 5px;
+	cursor:pointer;
+}
+.applybutton:hover{
+	background-color:#000;
+	border: 1px solid #fff;
+	color:#fff;
+}
+.error{
+	color:#f00;
+	float: left;
+}
+.success{
+	color:green;
+	position: relative;
+	bottom: 18px;
+}
+input[type="checkbox"]{
+	float:left;
+	width: auto;
+	margin-right: 10px;
+	padding: 0;
+	line-height: 0;
+	height: 11px;
+}
+#formbuilder textarea{
+	width:100%;
+	min-height:400px;
+	max-height:400px;
+	border:1px solid #ddd;
+	border-radius:5px;
+	padding:15px;
+}
+table{
+	width:100%;
+	text-align:center;
+	margin-top:30px;
+	border: 1px solid #000;
+}
+table tr th{
+	border-right: 1px solid #000;
+	padding:5px;
+}
+table tr td{
+	border: 1px solid #000;
+	padding:5px;
+}
+.actionbutton{
+	border:1px solid #000;
+	padding:5px 10px;
+	margin-right:5px;
+	cursor:pointer;
+}
+.actionbutton:hover{
+	border:1px solid #fff;
+	color:#fff;
+}
+#blah{
+	float: right;
+	position: absolute;
+	right: 4px;
+	border-radius: 5px;
+	top: 3px;
+}
+#image{
+	padding: 14px;
+}
+.input-group {
+    position: relative;
+    display: block;
+    border-collapse: separate;
+    width: 50%;
+}
+.container-center form{
+	margin: 0 auto;
+	width: 50%;
+}
+.highlight{
+	border:2px solid #f00;
+}
+.displaynone{
+	display:none !important;
+}
+.displayblock{
+	display:block;
+}
+#addquestionoptions input{
+	width: 60%;
+	float: left;
+	margin-right: 5px;
+}
+#addquestionoptions label{
+	width: 35%;
+	float: right;
+	margin-right: 0px;
+	min-height: 35px;
+	line-height: 20px;
+	padding-top: 8px;
+}
+#addquestionoptions input[type="radio"]{
+	margin-right: 10px;
+	width: auto;
+}
+.removeclass{
+	float: left;
+	width: 100%;
+	cursor: pointer;
+	text-decoration: none;
+	color:#f00;
+}
+.removeclass:hover{
+	text-decoration: none;
+	color:#000;
+}
